@@ -7,14 +7,15 @@
             while (true)
             {
                 Console.Clear();
+                
                 #region geraPalavraAleatoria
                 string[] frutas =
                 {
                     "ABACATE",
                     "ABACAXI",
                     "ACEROLA",
-                    "AÇAI",
-                    "ARAÇA",
+                    "ACAI",
+                    "ARACA",
                     "ABACATE",
                     "BACABA",
                     "BACURI",
@@ -27,7 +28,7 @@
                     "GOIABA",
                     "JABUTICABA",
                     "JENIPAPO",
-                    "MAÇÃ",
+                    "MACA",
                     "MANGABA",
                     "MANGA",
                     "MARACUJA",
@@ -55,13 +56,15 @@
 
                 Console.WriteLine(frutaAdivinhada);
                 Console.WriteLine(frutaAleatoria);
+
                 #region desenhaLogo
-                    Console.WriteLine("+----------------+");
-                    Console.WriteLine("| Jogo de Forca  |");
-                    Console.WriteLine("+----------------+");
-                    int tentativas = 0;
-                    bool acertou = false, enforcou = false;
+                Console.WriteLine("+----------------+");
+                Console.WriteLine("| Jogo de Forca  |");
+                Console.WriteLine("+----------------+");
+                int tentativas = 0;
+                bool acertou = false, enforcou = false;
                 #endregion
+
                 #region jogoDaForca
                 while (acertou == false && enforcou == false) 
                     {
@@ -102,7 +105,6 @@
                             Console.WriteLine("Nao foi dessa vez! Tente novamente!");
                         }
                     }
-
                 #endregion
                 Console.ReadLine();
             }
