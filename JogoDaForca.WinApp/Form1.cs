@@ -4,10 +4,15 @@ namespace JogoDaForca.WinApp
 {
     public partial class Form1 : Form
     {
-        JogoDaForca jogoDaForca= new JogoDaForca();
+        JogoDaForca jogoDaForca = new JogoDaForca();
         public Form1()
         {
             InitializeComponent();
+            ConfiguraClickBotao();
+        }
+
+        private void ConfiguraClickBotao()
+        {
             btnGerarFrutaAleatoria.Click += GerarFrutaAleatoria;
             btnA.Click += ComparaLetraChuteComLetraFruta;
             btnB.Click += ComparaLetraChuteComLetraFruta;
@@ -33,32 +38,43 @@ namespace JogoDaForca.WinApp
             btnX.Click += ComparaLetraChuteComLetraFruta;
             btnZ.Click += ComparaLetraChuteComLetraFruta;
             btnW.Click += ComparaLetraChuteComLetraFruta;
-            btnY.Click += ComparaLetraChuteComLetraFruta;
         }
 
         private void ComparaLetraChuteComLetraFruta(object? sender, EventArgs e)
         {
-            Button btnClicado = (Button)sender;
-            //laco do tamanho do array da fruta
-            for (int i = 0; i < jogoDaForca.frutaAdivinhada.Length; i++)
+            while (jogoDaForca.acertou == false && jogoDaForca.enforcou == false)
             {
-                char btn = Convert.ToChar(btnClicado.Text);
-                //compara o chute com um caractere do array na posicao do indice no for
-                if (btn == jogoDaForca.frutaAleatoria[i])
+                Button btnClicado = (Button)sender;
+                bool frutaFoiEncontrada = false;
+                for (int i = 0; i < jogoDaForca.frutaAdivinhada.Length; i++)
                 {
-                    jogoDaForca.frutaAdivinhada[i] = btn;
-                    //frutaAdivinhada[i] = chute;
-                    //frutaFoiEncontrada = true;
+                    char btn = Convert.ToChar(btnClicado.Text);
+                    if (btn == jogoDaForca.frutaAleatoria[i])
+                    {
+                        jogoDaForca.frutaAdivinhada[i] = btn;
+                        frutaFoiEncontrada = true;
+                    }
+                }
+                if (frutaFoiEncontrada == false)
+                {
+                    jogoDaForca.tentativas++;
+                }
+                TextBox frutaEmTextBox = new TextBox(); 
+                string frutaEmString = new string(jogoDaForca.frutaAdivinhada);
+                frutaEmTextBox.Text = frutaEmString;
+
+                jogoDaForca.acertou = frutaEmTextBox.Text == jogoDaForca.frutaAleatoria;
+                jogoDaForca.enforcou = jogoDaForca.tentativas == 5;
+                txtFrutaAleatoria.Text = frutaEmTextBox.Text;
+                if (jogoDaForca.acertou)
+                {
+                    txtFrutaAleatoria.Text = "ACERTOU";
+                }
+                else if (jogoDaForca.enforcou)
+                {
+                    txtFrutaAleatoria.Text = "EFORCOU";
                 }
             }
-            string test = new string(jogoDaForca.frutaAdivinhada);
-            TextBox frutaConvertidaEmTextBox = new TextBox(); 
-            frutaConvertidaEmTextBox.Text = test;
-            txtFrutaAleatoria.Text = frutaConvertidaEmTextBox.Text;
-            //if (frutaFoiEncontrada == false)
-            //{
-            //    tentativas++;
-            //}
         }
 
         private void GerarFrutaAleatoria(object? sender, EventArgs e)
@@ -66,6 +82,7 @@ namespace JogoDaForca.WinApp
             GeraFrutaUmaAleatoria();
             TransformarPalavraEmTracinho();
             AdicionaFrutaAleatoriaNoTextBox();
+            this.jogoDaForca.tentativas = 0;
         }
 
         private void AdicionaFrutaAleatoriaNoTextBox()
