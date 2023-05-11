@@ -62,15 +62,15 @@ namespace JogoDaForca.WinApp
             frutaEmTextBox.Text = frutaEmString;
 
             jogoDaForca.acertou = frutaEmTextBox.Text == jogoDaForca.frutaAleatoria;
-            jogoDaForca.enforcou = jogoDaForca.tentativas == 5;
             txtFrutaAleatoria.Text = frutaEmTextBox.Text;
-            if (jogoDaForca.acertou)
+            if(jogoDaForca.acertou)
             {
                 txtFrutaAleatoria.Text = $"ACERTOU" ;
             }
-            else if (jogoDaForca.enforcou)
+            else if(jogoDaForca.tentativas == 5)
             {
-                txtFrutaAleatoria.Text = "EFORCOU";
+                jogoDaForca.enforcou = true;
+                txtFrutaAleatoria.Text = "ENFORCOU";
             }
         }
 
