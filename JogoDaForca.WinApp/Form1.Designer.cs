@@ -76,6 +76,7 @@
             txtFrutaAleatoria = new TextBox();
             btnGerarFrutaAleatoria = new Button();
             tableLayoutPanel3 = new TableLayoutPanel();
+            lbQuantidadeLetra = new Label();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
@@ -628,10 +629,10 @@
             // 
             txtFrutaAleatoria.Anchor = AnchorStyles.None;
             txtFrutaAleatoria.Font = new Font("Segoe UI", 22F, FontStyle.Regular, GraphicsUnit.Point);
-            txtFrutaAleatoria.Location = new Point(6, 245);
+            txtFrutaAleatoria.Location = new Point(115, 245);
             txtFrutaAleatoria.Multiline = true;
             txtFrutaAleatoria.Name = "txtFrutaAleatoria";
-            txtFrutaAleatoria.Size = new Size(567, 50);
+            txtFrutaAleatoria.Size = new Size(348, 50);
             txtFrutaAleatoria.TabIndex = 0;
             txtFrutaAleatoria.TextAlign = HorizontalAlignment.Center;
             // 
@@ -655,6 +656,7 @@
             tableLayoutPanel3.Controls.Add(tableLayoutPanel2, 1, 1);
             tableLayoutPanel3.Controls.Add(btnGerarFrutaAleatoria, 1, 2);
             tableLayoutPanel3.Controls.Add(txtFrutaAleatoria, 0, 2);
+            tableLayoutPanel3.Controls.Add(lbQuantidadeLetra, 0, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
             tableLayoutPanel3.Location = new Point(0, 0);
             tableLayoutPanel3.MinimumSize = new Size(828, 319);
@@ -665,6 +667,16 @@
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
             tableLayoutPanel3.Size = new Size(828, 319);
             tableLayoutPanel3.TabIndex = 4;
+            // 
+            // lbQuantidadeLetra
+            // 
+            lbQuantidadeLetra.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lbQuantidadeLetra.AutoSize = true;
+            lbQuantidadeLetra.Location = new Point(270, 4);
+            lbQuantidadeLetra.Name = "lbQuantidadeLetra";
+            lbQuantidadeLetra.Size = new Size(100, 14);
+            lbQuantidadeLetra.TabIndex = 4;
+            lbQuantidadeLetra.Text = "Quantidade Letra: ";
             // 
             // Form1
             // 
@@ -732,5 +744,6 @@
         private Button btnGerarFrutaAleatoria;
         private TextBox txtFrutaAleatoria;
         private TableLayoutPanel tableLayoutPanel3;
+        private Label lbQuantidadeLetra;
     }
 }

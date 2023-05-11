@@ -11,9 +11,100 @@ namespace JogoDaForca.WinApp
             ConfiguraClickBotao();
         }
 
+        private void ComparaLetraChuteComLetraFruta(object? sender, EventArgs e)
+        {
+            Button btnClicado = (Button)sender;
+            bool letraFoiEncontrada = false;
+            for (int i = 0; i < jogoDaForca.frutaAdivinhada.Length; i++)
+            {
+                char palpite = Convert.ToChar(btnClicado.Text);
+                if (palpite == jogoDaForca.frutaAleatoria[i])
+                {
+                    jogoDaForca.frutaAdivinhada[i] = palpite;
+                    letraFoiEncontrada = true;
+                }
+            }
+            if (letraFoiEncontrada == false)
+            {
+                jogoDaForca.tentativas++;
+                DesenhaBonecoConformeTentativaErro();
+            }
+            txtFrutaAleatoria.Text = new string(jogoDaForca.frutaAdivinhada);
+            if (txtFrutaAleatoria.Text == jogoDaForca.frutaAleatoria)
+            {
+                txtFrutaAleatoria.Text = $"ACERTOU";
+            }
+            else if (jogoDaForca.enforcou)
+            {
+                txtFrutaAleatoria.Text = "ENFORCOU";
+            }
+        }
+
+
+        private void DesenhaBonecoConformeTentativaErro()
+        {
+            if (txtFrutaAleatoria.Text == jogoDaForca.frutaAleatoria)
+            {
+                jogoDaForca.acertou = true;
+            }
+            else if (jogoDaForca.tentativas == 1)
+            {
+                labCabeca.Visible = true;
+            }
+            else if (jogoDaForca.tentativas == 2)
+            {
+                labBrancoEsq.Visible = true;
+            }
+            else if (jogoDaForca.tentativas == 3)
+            {
+                labBracoDir.Visible = true;
+            }
+            else if (jogoDaForca.tentativas == 4)
+            {
+                labTronco1.Visible = true;
+            }
+            else if (jogoDaForca.tentativas == 5)
+            {
+                labTronco2.Visible = true;
+            }
+            else if (jogoDaForca.tentativas == 6)
+            {
+                labPernaEsq.Visible = true;
+            }
+            else if (jogoDaForca.tentativas == 7)
+            {
+                labPernaDir.Visible = true;
+                jogoDaForca.enforcou = true;
+            }
+        }
+        private void DesativaVisibilidadeBoneco()
+        {
+            labCabeca.Visible = false;
+            labBrancoEsq.Visible = false;
+            labBracoDir.Visible = false;
+            labTronco1.Visible = false;
+            labTronco2.Visible = false;
+            labPernaEsq.Visible = false;
+            labPernaDir.Visible = false;
+            jogoDaForca.tentativas = 0;
+            jogoDaForca.enforcou = false;
+        }
+        private void GerarFrutaAleatoria(object? sender, EventArgs e)
+        {
+            GeraFrutaUmaAleatoria();
+            TransformarPalavraEmTracinho();
+            txtFrutaAleatoria.Text = new string(jogoDaForca.frutaAdivinhada);
+            DesativaVisibilidadeBoneco();
+            this.jogoDaForca.tentativas = 0;
+        }
         private void ConfiguraClickBotao()
         {
+            foreach (Button botao in tableLayoutPanel1.Controls)
+            {
+                botao.Click += ComparaLetraChuteComLetraFruta;
+            }
             btnGerarFrutaAleatoria.Click += GerarFrutaAleatoria;
+            /*
             btnA.Click += ComparaLetraChuteComLetraFruta;
             btnB.Click += ComparaLetraChuteComLetraFruta;
             btnC.Click += ComparaLetraChuteComLetraFruta;
@@ -39,91 +130,8 @@ namespace JogoDaForca.WinApp
             btnX.Click += ComparaLetraChuteComLetraFruta;
             btnZ.Click += ComparaLetraChuteComLetraFruta;
             btnW.Click += ComparaLetraChuteComLetraFruta;
+             */
         }
-
-        private void ComparaLetraChuteComLetraFruta(object? sender, EventArgs e)
-        {
-            Button btnClicado = (Button)sender;
-            bool frutaFoiEncontrada = false;
-            for (int i = 0; i < jogoDaForca.frutaAdivinhada.Length; i++)
-            {
-                char btn = Convert.ToChar(btnClicado.Text);
-                if (btn == jogoDaForca.frutaAleatoria[i])
-                {
-                    jogoDaForca.frutaAdivinhada[i] = btn;
-                    frutaFoiEncontrada = true;
-                }
-            }
-
-            if (frutaFoiEncontrada == false)
-            {
-                jogoDaForca.tentativas++;
-                if (jogoDaForca.tentativas == 1)
-                {
-                    labCabeca.Visible = true;
-                }
-                else if (jogoDaForca.tentativas == 2)
-                {
-                    labBrancoEsq.Visible = true;
-                }
-                else if (jogoDaForca.tentativas == 3)
-                {
-                    labBracoDir.Visible = true;
-                }
-                else if (jogoDaForca.tentativas == 4)
-                {
-                    labTronco1.Visible = true;
-                }
-                else if (jogoDaForca.tentativas == 5)
-                {
-                    labTronco2.Visible = true;
-                }
-                else if (jogoDaForca.tentativas == 6)
-                {
-                    labPernaEsq.Visible = true;
-                }
-                else if (jogoDaForca.tentativas == 7)
-                {
-                    labPernaDir.Visible = true;
-                }
-            }
-            txtFrutaAleatoria.Text = new string(jogoDaForca.frutaAdivinhada);
-
-            if (jogoDaForca.tentativas == 7)
-            {
-                jogoDaForca.enforcou = true;
-            }
-            InformaResultadoNoTextBox();
-        }
-
-        private void InformaResultadoNoTextBox()
-        {
-            if (jogoDaForca.acertou)
-            {
-                txtFrutaAleatoria.Text = $"ACERTOU";
-            }
-            else if (jogoDaForca.enforcou)
-            {
-                txtFrutaAleatoria.Text = "ENFORCOU";
-            }
-        }
-
-        private void GerarFrutaAleatoria(object? sender, EventArgs e)
-        {
-            GeraFrutaUmaAleatoria();
-            TransformarPalavraEmTracinho();
-            AdicionaFrutaAleatoriaNoTextBox();
-            this.jogoDaForca.tentativas = 0;
-        }
-
-        private void AdicionaFrutaAleatoriaNoTextBox()
-        {
-            string fruntaConvertitaEmTrancosString = new string(jogoDaForca.frutaAdivinhada);
-            TextBox frutaConvertidaEmTextBox = new TextBox();
-            frutaConvertidaEmTextBox.Text = fruntaConvertitaEmTrancosString;
-            txtFrutaAleatoria.Text = frutaConvertidaEmTextBox.Text;
-        }
-
         private void GeraFrutaUmaAleatoria()
         {
             string[] frutas =
@@ -162,7 +170,6 @@ namespace JogoDaForca.WinApp
             Random random = new Random();
             jogoDaForca.frutaAleatoria = frutas[random.Next(0, frutas.Length)];
         }
-
         private void TransformarPalavraEmTracinho()
         {
             jogoDaForca.frutaAdivinhada = new char[jogoDaForca.frutaAleatoria.Length];
