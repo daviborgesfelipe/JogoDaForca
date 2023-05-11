@@ -66,13 +66,13 @@
             label8 = new Label();
             label9 = new Label();
             label10 = new Label();
-            label11 = new Label();
-            label12 = new Label();
-            label13 = new Label();
-            label16 = new Label();
-            label17 = new Label();
-            label15 = new Label();
-            label14 = new Label();
+            labCabeca = new Label();
+            labTronco1 = new Label();
+            labTronco2 = new Label();
+            labPernaEsq = new Label();
+            labPernaDir = new Label();
+            labBracoDir = new Label();
+            labBrancoEsq = new Label();
             txtFrutaAleatoria = new TextBox();
             btnGerarFrutaAleatoria = new Button();
             tableLayoutPanel3 = new TableLayoutPanel();
@@ -410,13 +410,13 @@
             tableLayoutPanel2.Controls.Add(label8, 2, 0);
             tableLayoutPanel2.Controls.Add(label9, 3, 1);
             tableLayoutPanel2.Controls.Add(label10, 3, 2);
-            tableLayoutPanel2.Controls.Add(label11, 3, 3);
-            tableLayoutPanel2.Controls.Add(label12, 3, 4);
-            tableLayoutPanel2.Controls.Add(label13, 3, 5);
-            tableLayoutPanel2.Controls.Add(label16, 2, 6);
-            tableLayoutPanel2.Controls.Add(label17, 4, 6);
-            tableLayoutPanel2.Controls.Add(label15, 4, 4);
-            tableLayoutPanel2.Controls.Add(label14, 2, 4);
+            tableLayoutPanel2.Controls.Add(labCabeca, 3, 3);
+            tableLayoutPanel2.Controls.Add(labTronco1, 3, 4);
+            tableLayoutPanel2.Controls.Add(labTronco2, 3, 5);
+            tableLayoutPanel2.Controls.Add(labPernaEsq, 2, 6);
+            tableLayoutPanel2.Controls.Add(labPernaDir, 4, 6);
+            tableLayoutPanel2.Controls.Add(labBracoDir, 4, 4);
+            tableLayoutPanel2.Controls.Add(labBrancoEsq, 2, 4);
             tableLayoutPanel2.Location = new Point(651, 34);
             tableLayoutPanel2.MinimumSize = new Size(174, 185);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -541,81 +541,88 @@
             label10.Text = "___";
             label10.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // label11
+            // labCabeca
             // 
-            label11.AutoSize = true;
-            label11.Dock = DockStyle.Fill;
-            label11.Location = new Point(105, 78);
-            label11.Name = "label11";
-            label11.Size = new Size(28, 26);
-            label11.TabIndex = 10;
-            label11.Text = "O";
-            label11.TextAlign = ContentAlignment.MiddleCenter;
+            labCabeca.AutoSize = true;
+            labCabeca.Dock = DockStyle.Fill;
+            labCabeca.Location = new Point(105, 78);
+            labCabeca.Name = "labCabeca";
+            labCabeca.Size = new Size(28, 26);
+            labCabeca.TabIndex = 10;
+            labCabeca.Text = "O";
+            labCabeca.TextAlign = ContentAlignment.MiddleCenter;
+            labCabeca.Visible = false;
             // 
-            // label12
+            // labTronco1
             // 
-            label12.AutoSize = true;
-            label12.Dock = DockStyle.Fill;
-            label12.Location = new Point(105, 104);
-            label12.Name = "label12";
-            label12.Size = new Size(28, 26);
-            label12.TabIndex = 11;
-            label12.Text = "|";
-            label12.TextAlign = ContentAlignment.MiddleCenter;
+            labTronco1.AutoSize = true;
+            labTronco1.Dock = DockStyle.Fill;
+            labTronco1.Location = new Point(105, 104);
+            labTronco1.Name = "labTronco1";
+            labTronco1.Size = new Size(28, 26);
+            labTronco1.TabIndex = 11;
+            labTronco1.Text = "|";
+            labTronco1.TextAlign = ContentAlignment.MiddleCenter;
+            labTronco1.Visible = false;
             // 
-            // label13
+            // labTronco2
             // 
-            label13.AutoSize = true;
-            label13.Dock = DockStyle.Fill;
-            label13.Location = new Point(105, 130);
-            label13.Name = "label13";
-            label13.Size = new Size(28, 26);
-            label13.TabIndex = 12;
-            label13.Text = "|";
-            label13.TextAlign = ContentAlignment.MiddleCenter;
+            labTronco2.AutoSize = true;
+            labTronco2.Dock = DockStyle.Fill;
+            labTronco2.Location = new Point(105, 130);
+            labTronco2.Name = "labTronco2";
+            labTronco2.Size = new Size(28, 26);
+            labTronco2.TabIndex = 12;
+            labTronco2.Text = "|";
+            labTronco2.TextAlign = ContentAlignment.MiddleCenter;
+            labTronco2.Visible = false;
             // 
-            // label16
+            // labPernaEsq
             // 
-            label16.AutoSize = true;
-            label16.Dock = DockStyle.Right;
-            label16.Location = new Point(87, 156);
-            label16.Name = "label16";
-            label16.Size = new Size(12, 29);
-            label16.TabIndex = 15;
-            label16.Text = "/";
-            label16.TextAlign = ContentAlignment.TopRight;
+            labPernaEsq.AutoSize = true;
+            labPernaEsq.Dock = DockStyle.Right;
+            labPernaEsq.Location = new Point(87, 156);
+            labPernaEsq.Name = "labPernaEsq";
+            labPernaEsq.Size = new Size(12, 29);
+            labPernaEsq.TabIndex = 15;
+            labPernaEsq.Text = "/";
+            labPernaEsq.TextAlign = ContentAlignment.TopRight;
+            labPernaEsq.Visible = false;
             // 
-            // label17
+            // labPernaDir
             // 
-            label17.AutoSize = true;
-            label17.Dock = DockStyle.Fill;
-            label17.Location = new Point(139, 156);
-            label17.Name = "label17";
-            label17.Size = new Size(32, 29);
-            label17.TabIndex = 16;
-            label17.Text = "\\";
+            labPernaDir.AutoSize = true;
+            labPernaDir.Dock = DockStyle.Fill;
+            labPernaDir.Location = new Point(139, 156);
+            labPernaDir.Name = "labPernaDir";
+            labPernaDir.Size = new Size(32, 29);
+            labPernaDir.TabIndex = 16;
+            labPernaDir.Text = "\\";
+            labPernaDir.Visible = false;
             // 
-            // label15
+            // labBracoDir
             // 
-            label15.AutoSize = true;
-            label15.Dock = DockStyle.Fill;
-            label15.Location = new Point(139, 104);
-            label15.Name = "label15";
-            label15.Size = new Size(32, 26);
-            label15.TabIndex = 14;
-            label15.Text = "\\";
-            label15.TextAlign = ContentAlignment.MiddleLeft;
+            labBracoDir.AutoSize = true;
+            labBracoDir.Dock = DockStyle.Fill;
+            labBracoDir.Location = new Point(139, 104);
+            labBracoDir.Name = "labBracoDir";
+            labBracoDir.Size = new Size(32, 26);
+            labBracoDir.TabIndex = 14;
+            labBracoDir.Text = "\\";
+            labBracoDir.TextAlign = ContentAlignment.MiddleLeft;
+            labBracoDir.Visible = false;
             // 
-            // label14
+            // labBrancoEsq
             // 
-            label14.AutoSize = true;
-            label14.Dock = DockStyle.Fill;
-            label14.Location = new Point(71, 104);
-            label14.Name = "label14";
-            label14.Size = new Size(28, 26);
-            label14.TabIndex = 17;
-            label14.Text = "/";
-            label14.TextAlign = ContentAlignment.MiddleRight;
+            labBrancoEsq.AutoSize = true;
+            labBrancoEsq.Dock = DockStyle.Fill;
+            labBrancoEsq.Location = new Point(71, 104);
+            labBrancoEsq.Name = "labBrancoEsq";
+            labBrancoEsq.Size = new Size(28, 26);
+            labBrancoEsq.TabIndex = 17;
+            labBrancoEsq.Text = "/";
+            labBrancoEsq.TextAlign = ContentAlignment.MiddleRight;
+            labBrancoEsq.Visible = false;
             // 
             // txtFrutaAleatoria
             // 
@@ -715,13 +722,13 @@
         private Label label8;
         private Label label9;
         private Label label10;
-        private Label label11;
-        private Label label12;
-        private Label label13;
-        private Label label15;
-        private Label label16;
-        private Label label17;
-        private Label label14;
+        private Label labCabeca;
+        private Label labTronco1;
+        private Label labTronco2;
+        private Label labBracoDir;
+        private Label labPernaEsq;
+        private Label labPernaDir;
+        private Label labBrancoEsq;
         private Button btnGerarFrutaAleatoria;
         private TextBox txtFrutaAleatoria;
         private TableLayoutPanel tableLayoutPanel3;

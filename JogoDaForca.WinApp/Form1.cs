@@ -20,6 +20,7 @@ namespace JogoDaForca.WinApp
             btnD.Click += ComparaLetraChuteComLetraFruta;
             btnE.Click += ComparaLetraChuteComLetraFruta;
             btnF.Click += ComparaLetraChuteComLetraFruta;
+            btnG.Click += ComparaLetraChuteComLetraFruta;
             btnH.Click += ComparaLetraChuteComLetraFruta;
             btnI.Click += ComparaLetraChuteComLetraFruta;
             btnJ.Click += ComparaLetraChuteComLetraFruta;
@@ -53,15 +54,45 @@ namespace JogoDaForca.WinApp
                     frutaFoiEncontrada = true;
                 }
             }
+
             if (frutaFoiEncontrada == false)
             {
                 jogoDaForca.tentativas++;
+                if (jogoDaForca.tentativas == 1)
+                {
+                    labCabeca.Visible = true;
+                }
+                else if (jogoDaForca.tentativas == 2)
+                {
+                    labBrancoEsq.Visible = true;
+                }
+                else if (jogoDaForca.tentativas == 3)
+                {
+                    labBracoDir.Visible = true;
+                }
+                else if (jogoDaForca.tentativas == 4)
+                {
+                    labTronco1.Visible = true;
+                }
+                else if (jogoDaForca.tentativas == 5)
+                {
+                    labTronco2.Visible = true;
+                }
+                else if (jogoDaForca.tentativas == 6)
+                {
+                    labPernaEsq.Visible = true;
+                }
+                else if (jogoDaForca.tentativas == 7)
+                {
+                    labPernaDir.Visible = true;
+                }
             }
-            TextBox frutaEmTextBox = new TextBox();
-            string frutaEmString = new string(jogoDaForca.frutaAdivinhada);
-            frutaEmTextBox.Text = frutaEmString;
-            jogoDaForca.acertou = frutaEmTextBox.Text == jogoDaForca.frutaAleatoria;
-            txtFrutaAleatoria.Text = frutaEmTextBox.Text;
+            txtFrutaAleatoria.Text = new string(jogoDaForca.frutaAdivinhada);
+
+            if (jogoDaForca.tentativas == 7)
+            {
+                jogoDaForca.enforcou = true;
+            }
             InformaResultadoNoTextBox();
         }
 
@@ -71,9 +102,8 @@ namespace JogoDaForca.WinApp
             {
                 txtFrutaAleatoria.Text = $"ACERTOU";
             }
-            else if (jogoDaForca.tentativas == 5)
+            else if (jogoDaForca.enforcou)
             {
-                jogoDaForca.enforcou = true;
                 txtFrutaAleatoria.Text = "ENFORCOU";
             }
         }
