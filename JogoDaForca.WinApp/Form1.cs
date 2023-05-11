@@ -57,17 +57,21 @@ namespace JogoDaForca.WinApp
             {
                 jogoDaForca.tentativas++;
             }
-            TextBox frutaEmTextBox = new TextBox(); 
+            TextBox frutaEmTextBox = new TextBox();
             string frutaEmString = new string(jogoDaForca.frutaAdivinhada);
             frutaEmTextBox.Text = frutaEmString;
-
             jogoDaForca.acertou = frutaEmTextBox.Text == jogoDaForca.frutaAleatoria;
             txtFrutaAleatoria.Text = frutaEmTextBox.Text;
-            if(jogoDaForca.acertou)
+            InformaResultadoNoTextBox();
+        }
+
+        private void InformaResultadoNoTextBox()
+        {
+            if (jogoDaForca.acertou)
             {
-                txtFrutaAleatoria.Text = $"ACERTOU" ;
+                txtFrutaAleatoria.Text = $"ACERTOU";
             }
-            else if(jogoDaForca.tentativas == 5)
+            else if (jogoDaForca.tentativas == 5)
             {
                 jogoDaForca.enforcou = true;
                 txtFrutaAleatoria.Text = "ENFORCOU";
