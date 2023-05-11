@@ -42,38 +42,35 @@ namespace JogoDaForca.WinApp
 
         private void ComparaLetraChuteComLetraFruta(object? sender, EventArgs e)
         {
-            while (jogoDaForca.acertou == false && jogoDaForca.enforcou == false)
+            Button btnClicado = (Button)sender;
+            bool frutaFoiEncontrada = false;
+            for (int i = 0; i < jogoDaForca.frutaAdivinhada.Length; i++)
             {
-                Button btnClicado = (Button)sender;
-                bool frutaFoiEncontrada = false;
-                for (int i = 0; i < jogoDaForca.frutaAdivinhada.Length; i++)
+                char btn = Convert.ToChar(btnClicado.Text);
+                if (btn == jogoDaForca.frutaAleatoria[i])
                 {
-                    char btn = Convert.ToChar(btnClicado.Text);
-                    if (btn == jogoDaForca.frutaAleatoria[i])
-                    {
-                        jogoDaForca.frutaAdivinhada[i] = btn;
-                        frutaFoiEncontrada = true;
-                    }
+                    jogoDaForca.frutaAdivinhada[i] = btn;
+                    frutaFoiEncontrada = true;
                 }
-                if (frutaFoiEncontrada == false)
-                {
-                    jogoDaForca.tentativas++;
-                }
-                TextBox frutaEmTextBox = new TextBox(); 
-                string frutaEmString = new string(jogoDaForca.frutaAdivinhada);
-                frutaEmTextBox.Text = frutaEmString;
+            }
+            if (frutaFoiEncontrada == false)
+            {
+                jogoDaForca.tentativas++;
+            }
+            TextBox frutaEmTextBox = new TextBox(); 
+            string frutaEmString = new string(jogoDaForca.frutaAdivinhada);
+            frutaEmTextBox.Text = frutaEmString;
 
-                jogoDaForca.acertou = frutaEmTextBox.Text == jogoDaForca.frutaAleatoria;
-                jogoDaForca.enforcou = jogoDaForca.tentativas == 5;
-                txtFrutaAleatoria.Text = frutaEmTextBox.Text;
-                if (jogoDaForca.acertou)
-                {
-                    txtFrutaAleatoria.Text = "ACERTOU";
-                }
-                else if (jogoDaForca.enforcou)
-                {
-                    txtFrutaAleatoria.Text = "EFORCOU";
-                }
+            jogoDaForca.acertou = frutaEmTextBox.Text == jogoDaForca.frutaAleatoria;
+            jogoDaForca.enforcou = jogoDaForca.tentativas == 5;
+            txtFrutaAleatoria.Text = frutaEmTextBox.Text;
+            if (jogoDaForca.acertou)
+            {
+                txtFrutaAleatoria.Text = $"ACERTOU" ;
+            }
+            else if (jogoDaForca.enforcou)
+            {
+                txtFrutaAleatoria.Text = "EFORCOU";
             }
         }
 
